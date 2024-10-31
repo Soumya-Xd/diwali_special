@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Diwali & Kali Pujo</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Main container */
+        body {
+            background: radial-gradient(circle, #0c0732 20%, #210450);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Diwali text */
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #FFD700;
+            text-shadow: 0 0 10px #FF5733, 0 0 20px #FF5733, 0 0 30px #C70039, 0 0 40px #900C3F;
+            animation: glowText 1.5s ease-in-out infinite alternate;
+            margin-bottom: 20px;
+        }
+
+        @keyframes glowText {
+            from { text-shadow: 0 0 5px #FFD700, 0 0 10px #FF5733, 0 0 15px #C70039, 0 0 20px #900C3F; }
+            to { text-shadow: 0 0 20px #FFD700, 0 0 30px #FF5733, 0 0 40px #C70039, 0 0 50px #900C3F; }
+        }
+
+        /* Blessing text animation */
+        .blessing {
+            font-size: 1.5rem;
+            color: #FFD700;
+            margin-top: 10px;
+            animation: fade 2s ease-in-out infinite alternate;
+            height: 40px; /* To maintain space for changing text */
+        }
+
+        @keyframes fade {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Ma Kali image with glowing effect */
+        .ma-kali {
+            width: 200px;
+            height: auto;
+            border-radius: 50%;
+            border: 5px solid #FFD700;
+            box-shadow: 0 0 15px #FFD700, 0 0 25px #FF5733, 0 0 35px #C70039;
+            animation: glowImage 2s infinite alternate;
+            margin-top: 20px;
+        }
+
+        @keyframes glowImage {
+            from { box-shadow: 0 0 10px #FFD700, 0 0 20px #FF5733, 0 0 30px #C70039; }
+            to { box-shadow: 0 0 20px #FFD700, 0 0 30px #FF5733, 0 0 40px #C70039; }
+        }
+
+               /* Candle container */
+               .candles-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .candle {
+            position: relative;
+            width: 25px;
+            top:18px;    /* Reduced width */
+            height: 120px;  /* Reduced height */
+            background: #FFF8DC;
+            border-radius: 5px;  /* Adjusted for smaller size */
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Flame */
+        .flame {
+            position: absolute;
+            top: -18px;    /* Adjusted for smaller candle */
+            left: 28%;
+            transform: translateX(-50%);
+            width: 15px;   /* Reduced width */
+            height: 30px;  /* Reduced height */
+            background: radial-gradient(circle, #FFD700 30%, #FFA500);
+            border-radius: 50%;
+            animation: flicker 0.3s ease-in-out infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: scale(1) translateY(-1px); }
+            100% { transform: scale(1.05) translateY(-2px); }
+        }
+
+
+   
+    </style>
+</head>
+<body>
+
+    <h1>Happy Diwali & Kali Pujo</h1>
+
+    <!-- Ma Kali Image -->
+    <img src="ma_kali.jpg" alt="Ma Kali" class="ma-kali">
+    
+    <!-- Blessing Text Animation -->
+    <div class="blessing" id="blessing-text">शुभ दीपावली! 🙏</div>
+
+    <!-- Candle Animation -->
+    <div class="candles">
+        <div class="candle">
+            <div class="flame"></div>
+            <div class="candle-base"></div>
+        </div>
+
+    </div>
+    
+    <script>
+        // Blessing messages in Hindi and Bengali
+        const blessings = [
+            "शुभ दीपावली! 🙏",  // Hindi
+            "শুভ কালী পূজো! 🙏",  // Bengali
+            "Soumya की ओर से ढेर सारी शुभकामनाएँ! 🎉", // Hindi
+            "সৌম্য এর পক্ষ থেকে শুভেচ্ছা রইলো! 🎉"  // Bengali
+        ];
+
+        // Set up variables for animation
+        let currentBlessing = 0;
+        const blessingText = document.getElementById("blessing-text");
+
+        // Function to update blessing text with fade effect
+        function updateBlessingText() {
+            blessingText.style.opacity = 0; // Fade out
+
+            // Wait for fade-out to complete, then update text and fade in
+            setTimeout(() => {
+                blessingText.innerText = blessings[currentBlessing];
+                blessingText.style.opacity = 1; // Fade in
+
+                // Move to the next blessing or loop back to start
+                currentBlessing = (currentBlessing + 1) % blessings.length;
+            }, 1000); // Match with CSS fade animation duration (1s)
+        }
+
+        // Update blessing text every 4 seconds
+        setInterval(updateBlessingText, 4000);
+    </script>
+</body>
+</html>
